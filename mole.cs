@@ -54,7 +54,7 @@ const float vPistonsLoopUpExpandMaxImpulseNonAxis = 100000000000;
 const float drillRotorSpeed = 1.5f;
 const float minimumDrillRotorRotationPerExecution = 0.5f;
 
-const int minimumArmLocked = 3;
+const int minimumArmLocked = 4;
 
 const string verticalPushPistonTag = "piston_v";
 
@@ -502,20 +502,22 @@ List<T> GetBlocksContainingName<T>(string name) where T : class
 void ExtendVPushPiston(float speed, float maxImpulseAxis, float maxImpulseNonAxis)
 {
     for (int i = 0; i < this.verticalPushPistons.Count; ++i) {
-        this.verticalPushPistons[i].SetValue<float>("Velocity", speed);
-        this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
-        this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
-        this.verticalPushPistons[i].Extend();
+        this.SetPistonMovement(this.verticalPushPistons[i], PistonMovement.Extend, speed, maxImpulseAxis, maxImpulseNonAxis);
+        // this.verticalPushPistons[i].SetValue<float>("Velocity", speed);
+        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
+        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
+        // this.verticalPushPistons[i].Extend();
     }
 }
 
 void RetractVPushPiston(float speed, float maxImpulseAxis, float maxImpulseNonAxis)
 {
     for (int i = 0; i < this.verticalPushPistons.Count; ++i) {
-        this.verticalPushPistons[i].SetValue<float>("Velocity", speed);
-        this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
-        this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
-        this.verticalPushPistons[i].Retract();
+        this.SetPistonMovement(this.verticalPushPistons[i], PistonMovement.Retract, speed, maxImpulseAxis, maxImpulseNonAxis);
+        // .SetValue<float>("Velocity", speed);
+        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
+        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
+        // this.verticalPushPistons[i].Retract();
     }
 }
 
@@ -563,10 +565,6 @@ void RetractArms(EArms arms)
                     armsPistonsRetractSpeed,
                     armsPistonsRetractMaxImpulseAxis,
                     armsPistonsRetractMaxImpulseNonAxis);
-                // this.armsUpPistons[i].SetValue<float>("Velocity", armsPistonsRetractSpeed);
-                // this.armsUpPistons[i].SetValue<float>("MaxImpulseAxis", armsPistonsRetractMaxImpulseAxis);
-                // this.armsUpPistons[i].SetValue<float>("MaxImpulseNonAxis", armsPistonsRetractMaxImpulseNonAxis);
-                // this.armsUpPistons[i].Retract();
             }
             break;
         }
@@ -584,10 +582,6 @@ void RetractArms(EArms arms)
                     armsPistonsRetractSpeed,
                     armsPistonsRetractMaxImpulseAxis,
                     armsPistonsRetractMaxImpulseNonAxis);
-                // this.armsDownPistons[i].SetValue<float>("Velocity", armsPistonsRetractSpeed);
-                // this.armsDownPistons[i].SetValue<float>("MaxImpulseAxis", armsPistonsRetractMaxImpulseAxis);
-                // this.armsDownPistons[i].SetValue<float>("MaxImpulseNonAxis", armsPistonsRetractMaxImpulseNonAxis);
-                // this.armsDownPistons[i].Retract();
             }
             break;
         }
@@ -613,10 +607,6 @@ void ExtendArms(EArms arms)
                     armsPistonsExtendSpeed,
                     armsPistonsExtendMaxImpulseAxis,
                     armsPistonsExtendMaxImpulseNonAxis);
-                // this.armsUpPistons[i].SetValue<float>("Velocity", armsPistonsExtendSpeed);
-                // this.armsUpPistons[i].SetValue<float>("MaxImpulseAxis", armsPistonsExtendMaxImpulseAxis);
-                // this.armsUpPistons[i].SetValue<float>("MaxImpulseNonAxis", armsPistonsExtendMaxImpulseNonAxis);
-                // this.armsUpPistons[i].Extend(); 
             }
             break;
         }
@@ -633,10 +623,6 @@ void ExtendArms(EArms arms)
                     armsPistonsExtendSpeed,
                     armsPistonsExtendMaxImpulseAxis,
                     armsPistonsExtendMaxImpulseNonAxis);
-                // this.armsDownPistons[i].SetValue<float>("Velocity", armsPistonsExtendSpeed);
-                // this.armsDownPistons[i].SetValue<float>("MaxImpulseAxis", armsPistonsExtendMaxImpulseAxis);
-                // this.armsDownPistons[i].SetValue<float>("MaxImpulseNonAxis", armsPistonsExtendMaxImpulseNonAxis);
-                // this.armsDownPistons[i].Extend(); 
             }
             break;
         }
