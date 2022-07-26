@@ -495,10 +495,6 @@ void ExtendVPushPiston(float speed, float maxImpulseAxis, float maxImpulseNonAxi
 {
     for (int i = 0; i < this.verticalPushPistons.Count; ++i) {
         this.SetPistonMovement(this.verticalPushPistons[i], PistonMovement.Extend, speed, maxImpulseAxis, maxImpulseNonAxis);
-        // this.verticalPushPistons[i].SetValue<float>("Velocity", speed);
-        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
-        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
-        // this.verticalPushPistons[i].Extend();
     }
 }
 
@@ -506,10 +502,6 @@ void RetractVPushPiston(float speed, float maxImpulseAxis, float maxImpulseNonAx
 {
     for (int i = 0; i < this.verticalPushPistons.Count; ++i) {
         this.SetPistonMovement(this.verticalPushPistons[i], PistonMovement.Retract, speed, maxImpulseAxis, maxImpulseNonAxis);
-        // .SetValue<float>("Velocity", speed);
-        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseAxis);
-        // this.verticalPushPistons[i].SetValue<float>("MaxImpulseAxis", maxImpulseNonAxis);
-        // this.verticalPushPistons[i].Retract();
     }
 }
 
