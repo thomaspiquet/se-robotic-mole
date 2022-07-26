@@ -1,60 +1,50 @@
 /*
-Copyright (c) 2022 Thomas Piquet
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
-/*
 Mole.cs is intended to control a pistons based miner
 */
 
+// PI 3.14
 const float PI = (float)Math.PI;
 
+// Extending arms params
+// Low speed and little force in order to contact wall gently
 const float armsPistonsExtendSpeed = 0.2f;
 const float armsPistonsExtendMaxImpulseAxis = 10000;
 const float armsPistonsExtendMaxImpulseNonAxis = 10000; 
 
+// Retract arms params
+// High speed and middle force in order to free arms plate from wall glitch
 const float armsPistonsRetractSpeed = 2.0f;
 const float armsPistonsRetractMaxImpulseAxis = 70000;
 const float armsPistonsRetractMaxImpulseNonAxis = 70000;
 
+// Extending vertical pistons params
+// Low speed and middle force in order to mine
 const float vPistonsExpandSpeed = 0.1f;
 const float vPistonsExpandMaxImpulseAxis = 70000;
 const float vPistonsExpandMaxImpulseNonAxis = 70000; 
 
+// Retracting vertical pistons params
+// High speed and middle force in order retract
 const float vPistonsRetractSpeed = 1.5f;
 const float vPistonsRetractSpeedDrillMotorBlocked = 0.2f;
 const float vPistonsRetractMaxImpulseAxis = 70000;
 const float vPistonsRetractMaxImpulseNonAxis = 70000; 
 
-
-// --- LoopUp only
+// Extending vertical pistons params
+// Middle speed and very high force in order push up heavy loaded machine
+// Only for LoopUp
 const float vPistonsLoopUpExpandSpeed = 1.0f;
 const float vPistonsLoopUpExpandMaxImpulseAxis = 100000000000;
 const float vPistonsLoopUpExpandMaxImpulseNonAxis = 100000000000;
-// ---
 
-
+// Drills motor speed
 const float drillRotorSpeed = 1.5f;
+// Minimum angular rotation per tick before considering motor as blocked
 const float minimumDrillRotorRotationPerExecution = 0.5f;
 
+// Minimum arms to be locked
 const int minimumArmLocked = 4;
+
 
 const string verticalPushPistonTag = "piston_v";
 
@@ -67,6 +57,7 @@ const string armsDownMagneticPlateTag = "plate_h_down";
 const string drillMotorTag = "drill_motor";
 
 const string drillTag = "drill";
+
 
 List<IMyPistonBase> verticalPushPistons;
 
@@ -83,6 +74,7 @@ List<IMyShipDrill> drills;
 IMyTextPanel lcdPrimary;
 IMyTextPanel lcdSecondary;
 IMyTextPanel lcdTertiary;
+
 
 string text;
 string textLcd2;
